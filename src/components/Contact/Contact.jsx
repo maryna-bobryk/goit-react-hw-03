@@ -2,7 +2,7 @@ import s from './Contact.module.css';
 import { IoMdPerson } from 'react-icons/io';
 import { BsTelephoneFill } from 'react-icons/bs';
 
-const Contact = ({ name, number }) => {
+const Contact = ({ name, number, id, onDeleteContact }) => {
   return (
     <div className={s.contactCard}>
       <div className={s.contactContent}>
@@ -15,7 +15,7 @@ const Contact = ({ name, number }) => {
         <p className={s.contactText}>{number}</p>
         </div>
       </div>
-      <button>Delete</button>
+      <button onClick={()=>{onDeleteContact(id)}}>Delete</button>
     </div>
   );
 };

@@ -2,14 +2,17 @@ import s from './ContactForm.module.css';
 import { Form, Formik, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { nanoid } from 'nanoid';
-import { useId } from 'react';
+// import { useId } from 'react';
 
-const ContactForm = ({ handleSubmit }) => {
-  const nameFieldId = useId();
-  const numberFieldId = useId();
+const ContactForm = ({ onAddContact }) => {
+  // const nameId = useId();
+  // const numberId = useId();
+
+  const nameId = nanoid();
+  const numberId = nanoid();
 
   const onSubmit = (values, options) => {
-    handleSubmit({
+    onAddContact({
       ...values,
       id: nanoid(),
     });
@@ -42,9 +45,9 @@ const ContactForm = ({ handleSubmit }) => {
       >
         <Form className={s.contactForm}>
           <div className={s.contactFormInput}>
-            <label htmlFor={nameFieldId} className={s.contactFormLabel}>
+            <label htmlFor={nameId} className={s.contactFormLabel}>
               <span>Name</span>
-              <Field type="text" name="name" />
+              <Field id={nameId} type="text" name="name" />
               <ErrorMessage
                 name="name"
                 component="div"
@@ -53,9 +56,9 @@ const ContactForm = ({ handleSubmit }) => {
             </label>
           </div>
           <div className={s.contactFormInput}>
-            <label htmlFor={numberFieldId}className={s.contactFormLabel}>
+            <label htmlFor={numberId}className={s.contactFormLabel}>
               <span>Number</span>
-              <Field type="number" name="number" />
+              <Field id={numberId} type="number" name="number" />
               <ErrorMessage
                 name="number"
                 component="div"
